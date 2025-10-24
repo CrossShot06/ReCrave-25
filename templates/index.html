@@ -1,0 +1,52 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>Recrave</title>
+</head>
+<body>
+    <div class="container">
+
+        <nav class="navbar">
+            <a href="{% url 'register' %}" class="btn-register">Register Now</a>
+        </nav>
+
+        <div class="page page-1">
+            <div class="heading-group">
+                <img src="{% static 'images/presents.png' %}" alt="Students Gymkhana Presents" class="heading-presents">
+                <img src="{% static 'images/Recrave.png' %}" alt="Recrave" class="heading-logo">
+                <img src="{% static 'images/food-fest.png' %}" alt="The Annual Food Fest" class="heading-food-fest">
+            </div>
+
+            <img src="{% static 'images/date.png' %}" alt="Date: 7-8 Nov" class="corner-image date-image">
+            <img src="{% static 'images/venue.png' %}" alt="Venue: SAC" class="corner-image venue-image">
+
+            <img src="{% static 'images/gymkhana-logo.png' %}" alt="Students Gymkhana Logo" class="corner-image top-left-logo smaller-corner-logo">
+            <img src="{% static 'images/nit-logo.png' %}" alt="NIT Durgapur Logo" class="corner-image top-right-logo smaller-corner-logo">
+        </div>
+
+        <div class="page page-2">
+            <h1>What is ReCrave?</h1>
+            <p>
+                <strong>The Students' Gymkhana of the National Institute of Technology Durgapur proudly presents</strong> the third edition of <span>ReCrave — the Annual Food Fest of NIT Durgapur,</span> to be held on the 8th and 9th of November, 2025. Over the years, Recrave has become one of the most anticipated campus events — a vibrant celebration of taste, creativity, and community that brings together students, food lovers, and local vendors.
+            </p>
+        </div>
+
+        <div class="page page-3">
+            <h1>Glimpses Of ReCrave'25</h1>
+            <div id="glimpsesCarousel" class="glimpses-gallery">
+                <img src="{% static 'images/dj-performance.jpeg' %}" alt="DJ performance at Recrave">
+                <img src="{% static 'images/snack-stall.jpeg' %}" alt="Snack stall with drinks and chips">
+                <img src="{% static 'images/chai-stall.jpeg' %}" alt="Chai stall with earthen cups">
+                <img src="{% static 'images/ribbon-cutting.jpeg' %}" alt="Ribbon cutting ceremony at Recrave">
+                <img src="{% static 'images/food-stalls-view.jpeg' %}" alt="Overview of food stalls and crowd">
+                <img src="{% static 'images/stage-performer.jpeg' %}" alt="Performer on stage at Recrave">
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/index.js' %}"></script>
+</body>
+</html>

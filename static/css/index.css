@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../images/image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative; /* For stacking context */
+}
+
+.container::before {
+  content: "";
+  position: fixed; /* Fix overlay to viewport, like the background */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Your background overlay */
+  z-index: 1; /* Sits on top of the container's background */
+}
+
+.page {
+  width: 100%;
+  height: 100vh;
+  color: white; /* Changed for readability */
+  position: relative; /* For stacking context */
+  z-index: 2; /* Sits on top of the container's overlay */
+  overflow: hidden; /* Good practice for this setup */
+}
+
+
+.page-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 15vh; /* Pushes the centered content up. Adjust this value! */
+}
+
+.page-1 p {
+  font-size: 5rem; /* Make text bigger */
+  font-weight: bold;
+}
+
+/* This new class stacks your two images */
+.heading-group {
+  display: flex;
+  flex-direction: column; /* Stacks images vertically */
+  align-items: center;    /* Keeps them centered horizontally */
+}
+
+/* Style for the main logo (Recrave) - LARGEST */
+.heading-logo {
+  width: 70vw;       /* CHANGED from 60vw */
+  max-width: 820px;  /* CHANGED from 700px */
+  height: auto;
+  /* Add vertical spacing between images */
+  margin: 1rem 0; 
+}
+
+/* Style for the top and bottom text - SMALLER */
+.heading-presents,
+.heading-food-fest {
+  width: 55vw;       /* CHANGED from 45vw */
+  max-width: 640px;  /* CHANGED from 525px */
+  height: auto;
+}
+
+/* Shared styles for new corner images */
+.corner-image {
+  position: absolute; /* Positions the image relative to .page-1 */
+  width: 25vw;        /* Set a responsive width */
+  max-width: 300px;   /* Set a max width for large screens */
+  height: auto;
+}
+
+/* Position for Date image (bottom-left) */
+.date-image {
+  bottom: 3rem; /* 3rem (48px) spacing from the bottom */
+  left: 3rem;   /* 3rem (48px) spacing from the left */
+}
+
+/* Position for Venue image (bottom-right) */
+.venue-image {
+  bottom: 3rem; /* 3rem (48px) spacing from the bottom */
+  right: 3rem;  /* 3rem (48px) spacing from the right */
+}
+
+/* Position for NIT Logo (top-right) */
+.top-right-logo {
+  top: 6rem;  /* CHANGED from 3rem */
+  right: 3rem;
+}
+
+/* Position for Gymkhana Logo (top-left) */
+.top-left-logo {
+  top: 6rem;  /* CHANGED from 3rem */
+  left: 3rem;
+}
+
+/* Specific resizing for the top-left and top-right logos */
+.smaller-corner-logo {
+  width: 15vw;        /* Smaller responsive width */
+  max-width: 150px;   /* Smaller max width */
+}
+
+/*
+Styles for Page 2
+*/
+.page-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center;    /* Center horizontally */
+  text-align: center;
+  padding: 0 5vw; /* Add some side padding */
+}
+
+/*
+Styles for Page 3
+*/
+.page-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Aligns content to the top */
+  align-items: center;       /* Keeps it centered horizontally */
+  text-align: center;
+  padding: 10vh 5vw 0; /* Adds 10% viewport height padding to the top */
+}
+
+/* Shared heading styles for Page 2 & 3 */
+.page-2 h1,
+.page-3 h1 {
+  font-family: 'Liberation Serif', 'Merriweather', serif;
+  font-weight: 900;
+  font-size: 3.5rem;
+  color: #ffe600;   /* Yellow color */
+}
+
+/* Specific margin for Page 2 heading (to create space for paragraph) */
+.page-2 h1 {
+  margin-bottom: 4rem;
+}
+
+/* Specific margin for Page 3 heading (less space needed) */
+.page-3 h1 {
+  margin-bottom: 2rem; /* Add a smaller bottom margin */
+}
+
+.page-2 p {
+  /*
+    Here we use your requested font first, then our fallback.
+    '400' is the regular weight.
+  */
+  font-family: 'Abril Titling Condensed', 'Merriweather', serif;
+  font-weight: 400;
+  font-size: 1.5rem;   /* CHANGED from 1.3rem to be more readable */
+  line-height: 1.6;  /* Add spacing between lines */
+  color: white;
+  max-width: 1200px; /* CHANGED from 850px to cover more space */
+}
+
+/* Style for the bold part */
+.page-2 p strong {
+  font-weight: 700; /* '700' is the normal bold weight */
+}
+
+/* Style for the highlighted span */
+.page-2 p span {
+  color: #ffe600; /* Yellow color */
+}
+
+.glimpses-gallery {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;  /* Adjusted for hidden scrollbar */
+  gap: 2rem;             /* Increased space between images */
+  width: 100%;
+  max-width: 1400px;
+  margin-top: 2rem;      /* Reduced space below the heading */
+  position: relative;    /* Needed for potential navigation arrows later */
+}
+
+.glimpses-gallery img {
+  flex: 0 0 auto;
+  width: calc(33.333% - 1.333rem); /* Adjusted for 2rem gap */
+  max-width: 500px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;   /* More rounded corners */
+  scroll-snap-align: start;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* For smaller screens, show fewer images or make them smaller */
+@media (max-width: 768px) {
+  .glimpses-gallery img {
+    width: calc(50% - 0.75rem); /* Show 2 images + gap */
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .glimpses-gallery img {
+    width: calc(100% - 0.5rem); /* Show 1 image + gap */
+    height: 200px;
+  }
+  .glimpses-gallery {
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* Optional: Hide scrollbar in some browsers for cleaner look */
+.glimpses-gallery::-webkit-scrollbar {
+  height: 8px;
+}
+
+.glimpses-gallery::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.glimpses-gallery::-webkit-scrollbar-thumb {
+  background: #ffe600; /* Yellow scrollbar */
+  border-radius: 10px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.glimpses-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.glimpses-gallery {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/*
+Styles for the new Navbar
+*/
+
+.navbar {
+  position: fixed; /* Keeps it stuck to the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  
+  /* Transparent dark background */
+  background-color: rgba(0, 0, 0, 0.25); 
+  
+  /* Optional: Adds a subtle blur effect */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  
+  padding: 1rem 3rem; /* T/B padding, L/R padding */
+  
+  /* Flexbox to push button to the right */
+  display: flex;
+  justify-content: flex-end; /* Aligns content to the right */
+  align-items: center;
+  
+  z-index: 10; /* Ensures it's above all other content */
+  box-sizing: border-box; /* Includes padding in the width */
+}
+
+.btn-register {
+  font-family: 'Merriweather', serif; /* Matches your other fonts */
+  background-color: #ffe600; /* Your theme's yellow color */
+  color: #000; /* Black text */
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.btn-register:hover {
+  background-color: #ffffff; /* White on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}

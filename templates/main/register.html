@@ -1,0 +1,182 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <title>Register Your Stall for ReCrave</title>
+    <style>
+        /* This style block ensures the background and general layout apply */
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-image: url("{% static 'images/image.jpg' %}"); /* Use Django static tag for bg image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* Overlay for background image transparency */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
+            z-index: -1; /* Place behind other content */
+        }
+
+        .form-page {
+            min-height: 100vh; /* Ensure it takes full viewport height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center vertically */
+            align-items: center;    /* Center horizontally */
+            padding: 2rem 5vw; /* Padding top/bottom and sides */
+            box-sizing: border-box; /* Include padding in height calc */
+            z-index: 1; /* Ensure content is above overlay */
+            position: relative; /* For stacking context above body::before */
+        }
+
+        form {
+            background: rgba(0, 0, 0, 0.7); /* Slightly darker form background */
+            backdrop-filter: blur(8px); /* More blur for better separation */
+            -webkit-backdrop-filter: blur(8px);
+            padding: 2.5rem;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 550px; /* Slightly wider form */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+            color: #fff; /* Default text color for form */
+        }
+        
+        /* General styling for form fields (input, textarea) */
+        form input, form textarea {
+            font-family: Arial, sans-serif;
+            font-size: 1rem;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Lighter border */
+            background: rgba(255, 255, 255, 0.08); /* More subtle background */
+            color: #fff;
+            border-radius: 5px;
+            width: 100%; /* Make them full width */
+            box-sizing: border-box; /* Include padding in width */
+            margin-top: 0.5rem; /* Space between label and input */
+        }
+        form textarea {
+            min-height: 120px; /* More height for textarea */
+            resize: vertical; /* Allow vertical resizing */
+        }
+
+        form input:focus, form textarea:focus {
+            outline: none;
+            border-color: #ffe600; /* Highlight on focus */
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        form p {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.5rem;
+        }
+        form label {
+            font-family: 'Merriweather', serif;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #ffe600; /* Yellow labels */
+            margin-bottom: 0.25rem; /* Reduced space */
+        }
+        /* Style for help text like "e.g., Chinese..." */
+        form p .helptext {
+            font-family: Arial, sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 0.25rem;
+        }
+        .form-errors {
+            font-size: 0.9rem;
+            color: #ff6666; /* Redder error messages */
+            margin-top: 0.5rem;
+        }
+        .submit-btn {
+            font-family: 'Merriweather', serif;
+            background-color: #ffe600;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1.5rem; /* Space above button */
+        }
+        .submit-btn:hover {
+            background-color: #ffffff;
+            transform: scale(1.02); /* Slight zoom effect */
+        }
+
+        /* Navbar specific for this page */
+        .register-navbar {
+            background-color: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 3rem;
+            display: flex;
+            justify-content: flex-start; /* Button to the left for "Back Home" */
+            align-items: center;
+            z-index: 10;
+            box-sizing: border-box;
+        }
+
+        /* Add these styles for the button */
+
+        .btn-register {
+        font-family: 'Merriweather', serif; /* Matches your other fonts */
+        background-color: #ffe600; /* Your theme's yellow color */
+        color: #000; /* Black text */
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        }
+
+        .btn-register:hover {
+        background-color: #ffffff; /* White on hover */
+        transform: scale(1.05); /* Slight zoom effect */
+        }
+    </style>
+</head>
+<body>
+    {# The main container div is not needed here because the body itself acts as the page #}
+    {# and we're applying the background directly to it. #}
+
+    <nav class="register-navbar">
+        <a href="{% url 'index' %}" class="btn-register">Back to Home</a>
+    </nav>
+
+    <div class="form-page">
+        <h1 style="color: #ffe600; font-family: 'Merriweather', serif; font-size: 3rem; margin-bottom: 2rem;">Register Your Stall for ReCrave</h1>
+        
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="submit-btn">Submit Registration</button>
+        </form>
+    </div>
+</body>
+</html>
